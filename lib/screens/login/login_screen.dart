@@ -188,7 +188,9 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               hintText: "Enter Password",
               onSaved: (String? uPassword) {},
               onChanged: (String? value) {},
-              validator: (String? value) {},
+              validator: (String? value) {
+                return null;
+              },
             ),
             SizedBox(height: 24.0),
             AppButton(
@@ -296,7 +298,9 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               hintText: "Enter Password",
               onSaved: (String? uPassword) {},
               onChanged: (String? value) {},
-              validator: (String? value) {},
+              validator: (String? value) {
+                return null;
+              },
             ),
             SizedBox(height: 24.0),
             AppButton(
@@ -333,7 +337,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     textAlign: TextAlign.right,
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText2!
+                        .bodyMedium!
                         .copyWith(color: greenColor),
                   ),
                 ),
@@ -349,7 +353,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     "Don't have an account yet?",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .copyWith(fontWeight: FontWeight.w300),
                   ),
                   SizedBox(
@@ -365,7 +369,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       _isMoved = !_isMoved;
                     },
                     child: Text("Sign up",
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontWeight: FontWeight.w400, color: greenColor)),
                   )
                 ],
