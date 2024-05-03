@@ -24,7 +24,7 @@ class _SliderWidgetState extends State<SliderWidget> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       timer = Timer.periodic(Duration(seconds: 5), (time) {
         if (currentIndex < totalIndex!) {
           controller.animateTo(currentIndex * (screenWidth!),
@@ -99,18 +99,18 @@ class _SliderWidgetState extends State<SliderWidget> {
                           alignment: Alignment.center,
                           child: Text(slides[index].text!,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline5),
+                              style: Theme.of(context).textTheme.headlineSmall),
                         ),
                         Container(
                           alignment: Alignment.center,
                           child: Text(slides[index].altText!,
-                              style: Theme.of(context).textTheme.headline5),
+                              style: Theme.of(context).textTheme.headlineSmall),
                         ),
                         SizedBox(height: 12),
                         Container(
                           alignment: Alignment.center,
                           child: Text(slides[index].bAltText!,
-                              style: Theme.of(context).textTheme.bodyText1),
+                              style: Theme.of(context).textTheme.bodyLarge),
                         ),
                       ],
                     ),

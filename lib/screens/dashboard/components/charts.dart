@@ -1,5 +1,3 @@
-import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +13,7 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
   int touchedIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -31,18 +30,21 @@ class _ChartState extends State<Chart> {
                 aspectRatio: 1,
                 child: PieChart(
                   PieChartData(
-                      pieTouchData:
-                          PieTouchData(touchCallback: (pieTouchResponse) {
+                      pieTouchData: PieTouchData(touchCallback:
+                          (FlTouchEvent event,
+                              PieTouchResponse? pieTouchResponse) {
                         setState(() {
-                          final desiredTouch = pieTouchResponse.touchInput
-                                  is! PointerExitEvent &&
-                              pieTouchResponse.touchInput is! PointerUpEvent;
-                          if (desiredTouch &&
-                              pieTouchResponse.touchedSection != null) {
-                            touchedIndex = pieTouchResponse
-                                .touchedSection!.touchedSectionIndex;
-                          } else {
-                            touchedIndex = -1;
+                          if (event is! PointerExitEvent &&
+                              event is! PointerUpEvent &&
+                              pieTouchResponse != null) {
+                            final desiredTouch =
+                                pieTouchResponse.touchedSection != null;
+                            if (desiredTouch) {
+                              touchedIndex = pieTouchResponse
+                                  .touchedSection!.touchedSectionIndex;
+                            } else {
+                              touchedIndex = -1;
+                            }
                           }
                         });
                       }),
@@ -120,36 +122,3 @@ class _ChartState extends State<Chart> {
     });
   }
 }
-
-List<PieChartSectionData> paiChartSelectionDatas = [
-  PieChartSectionData(
-    color: primaryColor,
-    value: 25,
-    showTitle: false,
-    radius: 25,
-  ),
-  PieChartSectionData(
-    color: Color(0xFF26E5FF),
-    value: 20,
-    showTitle: false,
-    radius: 22,
-  ),
-  PieChartSectionData(
-    color: Color(0xFFFFCF26),
-    value: 10,
-    showTitle: false,
-    radius: 19,
-  ),
-  PieChartSectionData(
-    color: Color(0xFFEE2727),
-    value: 15,
-    showTitle: false,
-    radius: 16,
-  ),
-  PieChartSectionData(
-    color: primaryColor.withOpacity(0.1),
-    value: 25,
-    showTitle: false,
-    radius: 13,
-  ),
-];

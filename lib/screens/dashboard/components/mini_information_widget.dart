@@ -1,6 +1,5 @@
 import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 import 'package:smart_admin_dashboard/models/daily_info_model.dart';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +51,7 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
                 child: DropdownButton(
                   icon: Icon(Icons.more_vert, size: 18),
                   underline: SizedBox(),
-                  style: Theme.of(context).textTheme.button,
+                  style: Theme.of(context).textTheme.labelLarge,
                   value: _value,
                   items: [
                     DropdownMenuItem(
@@ -90,8 +89,10 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
               ),
               Container(
                 child: LineChartWidget(
-                  colors: widget.dailyData.colors,
-                  spotsData: widget.dailyData.spots,
+                  colors: widget.dailyData.colors ??
+                      [], // Ensure non-null and default empty list
+                  spotsData: widget.dailyData.spots ??
+                      [], // Ensure non-null with default empty list
                 ),
               )
             ],
@@ -110,14 +111,14 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
                 "${widget.dailyData.volumeData}",
                 style: Theme.of(context)
                     .textTheme
-                    .caption!
+                    .bodySmall!
                     .copyWith(color: Colors.white70),
               ),
               Text(
                 widget.dailyData.totalStorage!,
                 style: Theme.of(context)
                     .textTheme
-                    .caption!
+                    .bodySmall!
                     .copyWith(color: Colors.white),
               ),
             ],
@@ -134,8 +135,8 @@ class LineChartWidget extends StatelessWidget {
     required this.colors,
     required this.spotsData,
   }) : super(key: key);
-  final List<Color>? colors;
-  final List<FlSpot>? spotsData;
+  final List<Color> colors;
+  final List<FlSpot> spotsData;
 
   @override
   Widget build(BuildContext context) {
@@ -153,12 +154,14 @@ class LineChartWidget extends StatelessWidget {
                       aboveBarData: BarAreaData(show: false),
                       isCurved: true,
                       dotData: FlDotData(show: false),
-                      colors: colors,
+                      color: colors.isNotEmpty
+                          ? colors[0]
+                          : Colors
+                              .transparent, // Use the first color or a default
                       barWidth: 3),
                 ],
                 lineTouchData: LineTouchData(enabled: false),
                 titlesData: FlTitlesData(show: false),
-                axisTitleData: FlAxisTitleData(show: false),
                 gridData: FlGridData(show: false),
                 borderData: FlBorderData(show: false)),
           ),
