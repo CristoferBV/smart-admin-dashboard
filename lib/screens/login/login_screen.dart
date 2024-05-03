@@ -232,7 +232,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     "Already have an account?",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .copyWith(fontWeight: FontWeight.w300),
                   ),
                   SizedBox(
@@ -248,7 +248,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       _isMoved = !_isMoved;
                     },
                     child: Text("Sign In",
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontWeight: FontWeight.w400, color: greenColor)),
                   )
                 ],
